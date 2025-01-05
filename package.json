@@ -1,0 +1,24 @@
+{
+    "name": "group_chat_app",
+    "version": "1.0.0",
+    "description": "This app can be used to talk and interact in a group as well as to individuals.",
+    "homepage": "https://github.com/manas-1110/Group_Chat_App#readme",
+    "bugs": {
+        "url": "https://github.com/manas-1110/Group_Chat_App/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/manas-1110/Group_Chat_App.git"
+    },
+    "license": "ISC",
+    "author": "Manas Thakur",
+    "type": "commonjs",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ./backend/server.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
+    }
+}
