@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+
 dotenv.config();
 
-const uri = process.env.mongo_uri;
-
-const clientOptions = {
-    serverApi: { version: "1", strict: true, deprecationErrors: true },
-};
+const uri =
+    "mongodb+srv://manas1:1110@cluster0.7eain.mongodb.net/?retryWrites=true&w=majority";
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(uri, clientOptions);
+        console.log(uri);
+        const conn = await mongoose.connect(uri);
 
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
