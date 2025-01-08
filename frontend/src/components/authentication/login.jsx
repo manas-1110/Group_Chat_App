@@ -10,6 +10,7 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -55,13 +56,15 @@ const Login = () => {
                 isClosable: true,
                 position: "bottom",
             });
-            setUser(data);
+
+            // setUser(data);
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
             history.push("/chats");
         } catch (error) {
             toast({
                 title: "Error Occured!",
+                description: error.response?.data?.message || error.message,
                 status: "error",
                 duration: 5000,
                 isClosable: true,
