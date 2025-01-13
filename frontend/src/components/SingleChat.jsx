@@ -17,15 +17,45 @@ import { config } from "dotenv";
 import axios from "axios";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
+import io from "socket.io-client";
+import Lottie from "react-lottie";
+
+import animationData from "../animations/typing.json";
+
+const ENDPOINT = "http://localhost:3000";
+var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState("");
+    const [typing, setTyping] = useState(false);
+    const [istyping, setIsTyping] = useState(false);
+
+    const [socketConnected, setSocketConnected] = useState(false);
 
     const { user, selectedChat, setSelectedChat } = ChatState();
 
     const toast = useToast();
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice",
+        },
+    };
+
+    useEffect(() => {
+        socket = io(ENDPOINT);
+        socket.emit("setup", user);
+        socket.on("Connected", () => {
+            setSocketConnected(true);
+        });
+        socket.on("typing", () => setIsTyping(true));
+        socket.on("stop typing", () => setIsTyping(false));
+    }, []);
 
     const fetchMessages = async () => {
         if (!selectedChat) return;
@@ -41,9 +71,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 `/api/message/${selectedChat._id}`,
                 config
             );
-            console.log(messages);
+            // console.log(messages);
             setMessages(data);
             setLoading(false);
+
+            socket.emit("join chat", selectedChat._id);
         } catch (error) {
             toast({
                 title: "Error Occured!",
@@ -58,10 +90,31 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     useEffect(() => {
         fetchMessages();
+
+        selectedChatCompare = selectedChat;
     }, [selectedChat]);
+
+    useEffect(() => {
+        if (!socket) {
+            console.error("Socket is not initialized");
+            return;
+        }
+
+        socket.on("message recieved", (newMessageRecieved) => {
+            if (
+                !selectedChatCompare ||
+                selectedChatCompare._id !== newMessageRecieved.chat._id
+            ) {
+                //notify
+            } else {
+                setMessages([...messages, newMessageRecieved]);
+            }
+        });
+    });
 
     const sendMessage = async (event) => {
         if (event.key === "Enter" && newMessage) {
+            socket.emit("stop typing", selectedChat._id);
             try {
                 const config = {
                     headers: {
@@ -78,7 +131,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     },
                     config
                 );
-                console.log(data);
+                // console.log(data);
+
+                socket.emit("new message", data);
+
                 setMessages([...messages, data]);
             } catch (error) {
                 toast({
@@ -97,6 +153,26 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setNewMessage(e.target.value);
 
         // typing logic
+        if (!socketConnected) return;
+
+        if (!typing) {
+            setTyping(true);
+            socket.emit("typing", selectedChat._id);
+        }
+
+        let lastTypingTime = new Date().getTime();
+        var timerLength = 2000;
+
+        setTimeout(() => {
+            const timeNow = new Date().getTime();
+            const timeDiff = timeNow - lastTypingTime;
+            console.log(timeDiff);
+            if (timeDiff >= timerLength && typing) {
+                console.log("in if");
+                socket.emit("stop typing", selectedChat._id);
+                setTyping(false);
+            }
+        }, timerLength);
     };
 
     return (
@@ -170,6 +246,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             isRequired
                             mt={3}
                         >
+                            {istyping ? (
+                                <div>
+                                    <Lottie
+                                        options={defaultOptions}
+                                        width={70}
+                                        style={{
+                                            marginBottom: 15,
+                                            marginLeft: 0,
+                                        }}
+                                    />
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                             <Input
                                 variant="filled"
                                 bg="#E0E0E0"
