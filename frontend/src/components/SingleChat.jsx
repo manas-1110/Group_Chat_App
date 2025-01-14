@@ -34,7 +34,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     const [socketConnected, setSocketConnected] = useState(false);
 
-    const { user, selectedChat, setSelectedChat } = ChatState();
+    const {
+        user,
+        selectedChat,
+        setSelectedChat,
+        notification,
+        setNotification,
+    } = ChatState();
 
     const toast = useToast();
 
@@ -94,6 +100,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare = selectedChat;
     }, [selectedChat]);
 
+    // console.log(notification, "--------------------");
+
     useEffect(() => {
         if (!socket) {
             console.error("Socket is not initialized");
@@ -105,7 +113,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 !selectedChatCompare ||
                 selectedChatCompare._id !== newMessageRecieved.chat._id
             ) {
-                //notify
+                if (!notification.includes(newMessageRecieved)) {
+                    setNotification([newMessageRecieved, ...notification]);
+                    setFetchAgain(!fetchAgain);
+                }
             } else {
                 setMessages([...messages, newMessageRecieved]);
             }
