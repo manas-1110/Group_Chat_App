@@ -21,7 +21,7 @@ import Lottie from "react-lottie";
 
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "https://group-chat-app-vnh5.vercel.app/";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
