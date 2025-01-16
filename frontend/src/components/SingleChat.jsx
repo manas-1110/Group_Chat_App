@@ -13,7 +13,6 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { getSender, getSenderFull } from "../config/chatLogics";
 import ProfileModal from "./miscellaneous/profileModal";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
-import { config } from "dotenv";
 import axios from "axios";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
@@ -177,9 +176,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setTimeout(() => {
             const timeNow = new Date().getTime();
             const timeDiff = timeNow - lastTypingTime;
-            console.log(timeDiff);
+            // console.log(timeDiff);
             if (timeDiff >= timerLength && typing) {
-                console.log("in if");
+                // console.log("in if");
                 socket.emit("stop typing", selectedChat._id);
                 setTyping(false);
             }
