@@ -7,7 +7,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "https://group-chat-app-vnh5-fhx1apdnl-manas-thakurs-projects-690151d7.vercel.app/",
+                target: "https://chat-app-deploy-vege.onrender.com/",
                 changeOrigin: true,
             },
         },
