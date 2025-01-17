@@ -22,7 +22,7 @@ import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
 
 const ENDPOINT =
-    "https://group-chat-app-vnh5-q6xw9ptr0-manas-thakurs-projects-690151d7.vercel.app/";
+    "https://group-chat-app-vnh5-fhx1apdnl-manas-thakurs-projects-690151d7.vercel.app/";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
