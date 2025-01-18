@@ -8,8 +8,15 @@ function App() {
     return (
         <ChatProvider>
             <div className="App">
-                <Route path="/" component={HomePage} exact />
-                <Route path="/chats" component={ChatPage} />
+                <Route
+                    path="https://group-chat-app-vnh5.vercel.app/"
+                    component={HomePage}
+                    exact
+                />
+                <Route
+                    path="https://group-chat-app-vnh5.vercel.app/chats"
+                    component={ChatPage}
+                />
             </div>
         </ChatProvider>
     );
