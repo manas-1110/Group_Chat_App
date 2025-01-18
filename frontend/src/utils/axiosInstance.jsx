@@ -1,7 +1,8 @@
 import axios from "axios";
+require("dotenv").config();
 
 const axiosInstance = axios.create({
-    baseURL: "https://chat-app-deploy-vege.onrender.com/", // Replace with production URL later
+    baseURL: process.env.BACKEND, // Replace with production URL later
 });
 
 export default axiosInstance;

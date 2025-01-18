@@ -19,9 +19,11 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 
+require("dotenv").config();
+
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = "https://chat-app-deploy-vege.onrender.com/";
+const ENDPOINT = process.env.BACKEND;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

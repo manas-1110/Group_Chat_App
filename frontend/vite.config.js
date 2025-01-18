@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+require("dotenv").config();
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -7,7 +8,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "https://chat-app-deploy-vege.onrender.com/",
+                target: process.env.BACKEND,
                 changeOrigin: true,
             },
         },

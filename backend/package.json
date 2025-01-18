@@ -14,7 +14,6 @@
     "author": "Manas Thakur",
     "type": "commonjs",
     "main": "server.js",
-    // "proxy": "https://group-chat-app-vnh5.vercel.app/",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node ./server.js"
