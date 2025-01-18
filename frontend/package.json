@@ -3,6 +3,8 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "proxy": "https://group-chat-app-vnh5.vercel.app",
+    "homepage": "https://group-chat-app-mu.vercel.app",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
