@@ -1,10 +1,7 @@
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const axiosInstance = axios.create({
-    baseURL: process.env.VITE_BACKEND, // Replace with production URL later
+    baseURL: "https://group-chat-app-vnh5.vercel.app/", // Replace with production URL later
 });
 
 export default axiosInstance;

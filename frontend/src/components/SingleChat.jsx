@@ -19,13 +19,9 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 
-import dotenv from "dotenv";
-
-dotenv.config();
-
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = process.env.VITE_BACKEND;
+const ENDPOINT = "https://group-chat-app-vnh5.vercel.app/";
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
