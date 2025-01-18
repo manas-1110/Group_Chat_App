@@ -24,7 +24,10 @@ const MyChats = ({ fetchAgain }) => {
                 },
             };
 
-            const { data } = await axios.get("/api/chats", config);
+            const { data } = await axios.get(
+                "https://group-chat-app-vnh5.vercel.app/api/chats",
+                config
+            );
 
             setChats(data);
             // console.log(data);

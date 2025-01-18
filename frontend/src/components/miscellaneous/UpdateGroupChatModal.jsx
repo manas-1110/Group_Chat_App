@@ -58,7 +58,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
             };
             const { data } = await axios.put(
-                `/api/chats/groupremove`,
+                `https://group-chat-app-vnh5.vercel.app/api/chats/groupremove`,
                 {
                     chatId: selectedChat._id,
                     userId: user1._id,
@@ -115,7 +115,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
             };
             const { data } = await axios.put(
-                `/api/chats/groupadd`,
+                `https://group-chat-app-vnh5.vercel.app/api/chats/groupadd`,
                 {
                     chatId: selectedChat._id,
                     userId: user1._id,
@@ -190,7 +190,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                 },
             };
             const { data } = await axios.get(
-                `/api/user?search=${search}`,
+                `https://group-chat-app-vnh5.vercel.app/api/user?search=${search}`,
                 config
             );
             console.log(data);

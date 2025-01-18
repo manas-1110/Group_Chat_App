@@ -108,7 +108,7 @@ const SignUp = () => {
             };
 
             const { data } = await axios.post(
-                "/api/user",
+                "https://group-chat-app-vnh5.vercel.app/api/user",
                 { name, email, password, pic },
                 config
             );

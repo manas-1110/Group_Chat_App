@@ -3,11 +3,11 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
     plugins: [react()],
-    server: {
-        proxy: {
-            "/api": {
-                target: "https://group-chat-app-vnh5.vercel.app",
-            },
+    define: {
+        "process.env": {
+            VITE_BACKEND_URL: JSON.stringify(
+                "https://group-chat-app-vnh5.vercel.app"
+            ),
         },
     },
 });

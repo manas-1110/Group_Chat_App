@@ -46,7 +46,7 @@ const GroupChatModal = ({ children }) => {
             };
             console.log(query);
             const { data } = await axios.get(
-                `/api/user?search=${query}`,
+                `https://group-chat-app-vnh5.vercel.app/api/user?search=${query}`,
                 config
             );
             console.log(data);

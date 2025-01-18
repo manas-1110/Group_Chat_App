@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
     const [show, setShow] = useState(false);
@@ -43,7 +44,7 @@ const Login = () => {
                 },
             };
 
-            const { data } = await axios.post(
+            const { data } = await axiosInstance.post(
                 "/api/user/login",
                 { email, password },
                 config
