@@ -25,7 +25,7 @@ dotenv.config();
 
 import animationData from "../animations/typing.json";
 
-const ENDPOINT = process.env.BACKEND;
+const ENDPOINT = process.env.VITE_BACKEND;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

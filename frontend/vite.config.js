@@ -10,7 +10,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: process.env.BACKEND,
+                target: process.env.VITE_BACKEND,
                 changeOrigin: true,
             },
         },
