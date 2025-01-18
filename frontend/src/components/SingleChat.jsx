@@ -19,7 +19,9 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 import animationData from "../animations/typing.json";
 
