@@ -2,7 +2,7 @@
 
 This app can be used to talk and interact in a group as well as to individuals.
 
-The app can be accessed [here](https://group-chat-app-mu.vercel.app/chats).
+The app can be accessed [here](https://group-chat-app-mu.vercel.app/).
 
 **Few Features:**
 
